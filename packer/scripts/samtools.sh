@@ -10,7 +10,7 @@ HTSLIB_DIR="/opt/htslib"
 
 yum -y install \
     autoconf \
-    gcc72 \
+    gcc \
     git \
     ncurses-devel
 

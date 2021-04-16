@@ -11,7 +11,7 @@ REPOSITORY_URL="https://github.com/samtools/htslib.git"
 yum -y install \
     autoconf \
     bzip2-devel \
-    gcc72 \
+    gcc \
     git \
     libcurl-devel \
     openssl-devel \

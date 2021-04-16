@@ -14,21 +14,26 @@ function install_prereqs {
   yum -y remove java-1.7.0-openjdk*
 
   yum -y update
+  yum -y install https://vault.centos.org/6.10/os/x86_64/Packages/atlas-3.8.4-2.el6.x86_64.rpm
+  yum -y install https://vault.centos.org/6.10/os/x86_64/Packages/atlas-devel-3.8.4-2.el6.x86_64.rpm
   yum -y install \
   cmake \
-  gcc72-c++ \
+  gcc-c++ \
   git \
   java-1.8.0-openjdk \
   java-1.8.0-openjdk-devel \
   lz4 \
   lz4-devel \
-  python36 \
-  python36-devel \
-  python36-setuptools
+  python2-pip \
+  python3 \
+  python3-devel \
+  python3-setuptools
 
   # Upgrade latest latest pip
   python -m pip install --upgrade pip
   python3 -m pip install --upgrade pip
+  # Upgrade latest setuptools
+  python3 -m pip install --upgrade setuptools 
 
   WHEELS="argparse
   bokeh
@@ -59,7 +64,7 @@ function install_prereqs {
     python3 -m pip install "$WHEEL_NAME"
   done
 
-  python27 -m pip install ipykernel
+  python2 -m pip install ipykernel
 }
 
 function hail_build
@@ -85,7 +90,8 @@ function hail_build
       ./gradlew -Dspark.version="$SPARK_VERSION" -Dbreeze.version=0.13.2 -Dpy4j.version=0.10.6 shadowJar archiveZip
     fi
   elif [ "$HAIL_VERSION" = "master" ] || [[ "$HAIL_VERSION" > 0.2.23 ]]; then
-    make install-on-cluster HAIL_COMPILE_NATIVES=1 SPARK_VERSION="$SPARK_VERSION"
+    make install-on-cluster HAIL_COMPILE_NATIVES=1 SCALA_VERSION=2.12.10 SPARK_VERSION="$SPARK_VERSION"
+
   else
     echo "Hail 0.2.19 - 0.2.23 builds are not possible due to incompatiable configurations resolved in 0.2.24."
     exit 1

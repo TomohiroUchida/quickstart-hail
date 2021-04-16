@@ -6,7 +6,7 @@
     "source_ami_filter": {
       "filters": {
         "virtualization-type": "hvm",
-        "name": "amzn-ami-hvm-2018.03*",
+        "name": "amzn2-ami-hvm-2.0.20210303*",
         "root-device-type": "ebs"
       },
       "owners": ["amazon"],
@@ -79,6 +79,7 @@
     {
       "type": "shell",
       "inline": [
+        "sudo amazon-linux-extras install -y epel",
         "sudo yum -y install R",
         "sudo R --no-save < /tmp/R_install.R && rm /tmp/R_install.R"
       ]
