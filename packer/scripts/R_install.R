@@ -6,5 +6,6 @@ local({r <- getOption("repos")
 # The base path may not include this
 path_original <- Sys.getenv("PATH")
 Sys.setenv(PATH = paste(path_original, "/usr/local/bin", sep = ":"))
+install.packages("https://cran.r-project.org/src/contrib/Archive/pbdZMQ/pbdZMQ_0.3-3.tar.gz", repos=NULL, type="source")
 install.packages('IRkernel')
 IRkernel::installspec(user = FALSE)
