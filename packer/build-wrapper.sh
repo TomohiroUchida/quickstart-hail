@@ -123,7 +123,8 @@ else
 fi
 
 export AWS_MAX_ATTEMPTS=600  # Builds time out with default value
-packer build --var hail_name_version="$HAIL_NAME_VERSION" \
+#packer build -on-error=abort --var hail_name_version="$HAIL_NAME_VERSION" \
+packer build -on-error=abort  --var hail_name_version="$HAIL_NAME_VERSION" \
              --var hail_version="$HAIL_VERSION" \
              --var roda_bucket="$RODA_BUCKET" \
              --var htslib_version="$HTSLIB_VERSION" \

@@ -23,7 +23,7 @@ export LC_ALL=en_US.UTF-8
 
 function install_prereqs {
     yum -y install \
-        gcc72-c++ \
+        gcc-c++ \
         gd-devel \
         expat-devel \
         git \
