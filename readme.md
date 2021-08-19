@@ -1,3 +1,14 @@
+# For example
+```
+cd quickstart-hail/packer/
+
+# without vep
+./build-wrapper.sh --roda-bucket hail-vep-pipeline --hail-version 0.2.74 --htslib-version 1.10.2 --samtools-version 1.10 --subnet-id subnet-xxxxxxxx --subnet-type private --instance-profile-name INSTANCE_PROFILE_NAME
+
+# with vep
+./build-wrapper.sh --roda-bucket hail-vep-pipeline --hail-version 0.2.74 --htslib-version 1.10.2 --samtools-version 1.10 --subnet-id subnet-xxxxxxxx --subnet-type private --instance-profile-name INSTANCE_PROFILE_NAME --vep-version 103 
+```
+
 # Hail on EMR
 
 
