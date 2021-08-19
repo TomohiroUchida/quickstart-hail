@@ -23,16 +23,17 @@ export LC_ALL=en_US.UTF-8
 
 function install_prereqs {
     yum -y install \
-        gcc72-c++ \
+        gcc-c++ \
         gd-devel \
         expat-devel \
         git \
-        mysql55-devel \
+        mysql-devel \
         perl-App-cpanminus \
         perl-Env \
         unzip \
         which \
-        zlib-devel
+        zlib-devel \
+        mariadb-devel
 
     cpanm \
         autodie \
@@ -66,8 +67,11 @@ function vep_install {
         cd /opt
         git clone "$REPOSITORY_URL"
         cd ensembl-vep
-        git checkout "release/$VEP_VERSION"
-
+        if [ "$VEP_VERSION" == 103 ]; then  # building version 103 will fail
+          git checkout "release/103.1"
+        else
+          git checkout "release/$VEP_VERSION"
+        fi
         # Auto install (a)pi
         perl INSTALL.pl --DESTDIR "$VEP_DIR" --AUTO a --NO_HTSLIB --NO_UPDATE
 
